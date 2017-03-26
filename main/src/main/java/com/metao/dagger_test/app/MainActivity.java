@@ -2,9 +2,12 @@ package com.metao.dagger_test.app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends FragmentActivity implements DriversView {
+public class MainActivity extends AppCompatActivity implements DriversView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     @Inject
@@ -34,6 +37,9 @@ public class MainActivity extends FragmentActivity implements DriversView {
 
     @BindView(R.id.driver_recycle_view)
     RecyclerView driverRecycleView;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private List<Driver> driverList;
     private DriverAdapter driverAdapter;
@@ -43,11 +49,19 @@ public class MainActivity extends FragmentActivity implements DriversView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
+        initToolbar();
         driverList = new ArrayList<>();
         driverRecycleView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        driverAdapter = new DriverAdapter(this,driverList);
+        driverAdapter = new DriverAdapter(this, driverList);
+        driverRecycleView.setNestedScrollingEnabled(false);
         driverRecycleView.setAdapter(driverAdapter);
         createDriversComponent();
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle(getResources().getString(R.string.all_cars));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createDriversComponent() {
@@ -94,7 +108,6 @@ public class MainActivity extends FragmentActivity implements DriversView {
 
     @Override
     public void onErrorLoadingDrivers(Throwable e) {
-        e.printStackTrace();
         Log.d(TAG, "onErrorLoadingDrivers: " + e.getMessage());
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
     }

@@ -65,7 +65,7 @@ public class DriverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             driverNameTextView = (TextView) this.driverView.findViewById(R.id.driver_name);
             driverVinTextView = (TextView) this.driverView.findViewById(R.id.driver_vin);
             driverNameTextView.setText(driver.name);
-            driverVinTextView.setText(driver.vin);
+            driverVinTextView.setText(driver.address);
         }
     }
 }
