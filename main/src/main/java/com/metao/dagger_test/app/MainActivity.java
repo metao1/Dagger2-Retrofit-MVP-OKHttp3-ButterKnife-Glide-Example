@@ -86,7 +86,7 @@ public class MainActivity extends FragmentActivity implements DriversView {
 
     @Override
     public void onNextDriverLoad(Response response) {
-        Log.d(TAG, "onNextDriverLoad: " + response.getPlacemarks().size());
+        Log.d(TAG, "onNextDriverLoad: Drivers size" + response.getPlacemarks().size());
         this.driverList.addAll(response.getPlacemarks());
         this.driverAdapter.refresh();
     }
