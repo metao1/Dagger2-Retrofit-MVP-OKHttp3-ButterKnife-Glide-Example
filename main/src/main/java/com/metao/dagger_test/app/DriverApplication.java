@@ -10,7 +10,7 @@ import com.metao.dagger_test.di.DaggerApplicationComponent;
  */
 public class DriverApplication extends Application {
 
-    private static final String BASE_URL = "http://192.168.1.2";
+    private static final String BASE_URL = "https://gist.githubusercontent.com";
     private ApplicationComponent applicationComponent;
 
     @Override

@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class DriverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final List<Driver> driverList;
+    private List<Driver> driverList;
     private final Activity activity;
     private final LayoutInflater inflater;
 
@@ -25,10 +25,6 @@ public class DriverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.activity = activity;
         this.driverList = driverList;
         inflater = LayoutInflater.from(activity.getBaseContext());
-    }
-
-    public void refresh() {
-        notifyDataSetChanged();
     }
 
     @Override
@@ -48,6 +44,11 @@ public class DriverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public int getItemCount() {
         return this.driverList.size();
+    }
+
+    public void setDriversList(List<Driver> driversList) {
+        this.driverList.addAll(driversList);
+        notifyDataSetChanged();
     }
 
     class DriverViewHolder extends RecyclerView.ViewHolder {

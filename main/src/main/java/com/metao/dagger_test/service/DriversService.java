@@ -12,6 +12,6 @@ import javax.inject.Singleton;
 @Singleton
 public interface DriversService {
 
-    @GET("/website/v5/drivers.php")
+    @GET("/metao1/322bf21f2666773ccbca4e05c779c38f/raw/757acbce75f0ec8fc19838f58f803e8cd0cf210e/drivers.json")
     public Observable<Response> getDrivers();
 }

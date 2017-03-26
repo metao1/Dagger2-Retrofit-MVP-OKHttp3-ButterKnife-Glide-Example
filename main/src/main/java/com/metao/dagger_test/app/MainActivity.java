@@ -46,6 +46,7 @@ public class MainActivity extends FragmentActivity implements DriversView {
         driverList = new ArrayList<>();
         driverRecycleView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         driverAdapter = new DriverAdapter(this,driverList);
+        driverRecycleView.setAdapter(driverAdapter);
         createDriversComponent();
     }
 
@@ -86,13 +87,14 @@ public class MainActivity extends FragmentActivity implements DriversView {
 
     @Override
     public void onNextDriverLoad(Response response) {
-        Log.d(TAG, "onNextDriverLoad: Drivers size" + response.getPlacemarks().size());
+        Log.d(TAG, "onNextDriverLoad: Drivers size:" + response.getPlacemarks().size());
         this.driverList.addAll(response.getPlacemarks());
-        this.driverAdapter.refresh();
+        this.driverAdapter.setDriversList(response.getPlacemarks());
     }
 
     @Override
     public void onErrorLoadingDrivers(Throwable e) {
+        e.printStackTrace();
         Log.d(TAG, "onErrorLoadingDrivers: " + e.getMessage());
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
