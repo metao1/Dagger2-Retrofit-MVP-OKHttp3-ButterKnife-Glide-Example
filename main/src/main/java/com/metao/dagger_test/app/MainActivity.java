@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements DriversView {
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
         Log.d(TAG, "onPostCreate: ");
         driversPresenter.getDrivers();
     }

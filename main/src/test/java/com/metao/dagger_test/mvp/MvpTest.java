@@ -1,6 +1,7 @@
 package com.metao.dagger_test.mvp;
 
 import android.os.Looper;
+import android.util.Log;
 import com.metao.dagger_test.models.Driver;
 import com.metao.dagger_test.models.Response;
 import com.metao.dagger_test.service.DriversService;
